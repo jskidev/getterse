@@ -83,7 +83,7 @@ export const privacyPolicyDocument: LegalDocument = {
         "Australian residents have rights under the Australian Privacy Act 1988.",
       ],
       closingParagraphs: [
-        "To exercise any of these rights, contact us at support@terse.app. We will respond within 30 days.",
+        "To exercise any of these rights, contact us at support@getterse.app. We will respond within 30 days.",
       ],
     },
     {
@@ -100,7 +100,7 @@ export const privacyPolicyDocument: LegalDocument = {
     },
     {
       title: "11. Contact",
-      paragraphs: ["Questions about your data? Reach us at support@terse.app."],
+      paragraphs: ["Questions about your data? Reach us at support@getterse.app."],
     },
   ],
 };
@@ -177,7 +177,7 @@ export const termsOfUseDocument: LegalDocument = {
     },
     {
       title: "12. Contact",
-      paragraphs: ["Questions? Reach us at support@terse.app."],
+      paragraphs: ["Questions? Reach us at support@getterse.app."],
     },
   ],
 };
