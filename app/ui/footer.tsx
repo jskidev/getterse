@@ -15,8 +15,8 @@ export default function Footer() {
           <Link href="/terms" className={styles.link}>
             Terms
           </Link>
-          <a href="mailto:support@terse.app" className={styles.link}>
-            support@terse.app
+          <a href="mailto:support@getterse.app" className={styles.link}>
+            support@getterse.app
           </a>
         </div>
       </div>
