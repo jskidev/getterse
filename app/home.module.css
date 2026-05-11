@@ -1,0 +1,369 @@
+/* ── Entrance animation ───────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Main ────────────────────────────────────────────────────────────────── */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+/* ── Grain texture ────────────────────────────────────────────────────────── */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+.grain svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Shared inner container ──────────────────────────────────────────────── */
+
+.sectionInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+  width: 100%;
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────────── */
+
+.hero {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  padding:
+    clamp(56px, 8vw, 104px)
+    clamp(20px, 4vw, 48px)
+    clamp(48px, 6vw, 80px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 52px;
+  align-items: center;
+}
+
+/* Staggered fade-up for hero copy children */
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heroCopy > * {
+  opacity: 0;
+  animation: fadeIn 650ms var(--ease-out) forwards;
+}
+
+.heroCopy > *:nth-child(1) { animation-delay: 60ms; }
+.heroCopy > *:nth-child(2) { animation-delay: 140ms; }
+.heroCopy > *:nth-child(3) { animation-delay: 220ms; }
+.heroCopy > *:nth-child(4) { animation-delay: 300ms; }
+
+.headline {
+  font-size: clamp(3.8rem, 10vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  color: var(--text);
+  margin: 0;
+}
+
+.lead {
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 44ch;
+  margin: 0;
+}
+
+.categories {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* Phone frame */
+.heroVisual {
+  display: none; /* hidden on mobile — focus stays on CTA */
+  justify-content: center;
+  opacity: 0;
+  animation: fadeIn 700ms var(--ease-out) forwards;
+  animation-delay: 180ms;
+}
+
+.phoneFrame {
+  position: relative;
+  width: clamp(200px, 26vw, 280px);
+  aspect-ratio: 9 / 19.5;
+  border-radius: 40px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--surface-elevated);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 60px 100px rgba(0, 0, 0, 0.65),
+    0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.phoneImage {
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ── Marquee — two rows, opposite directions ─────────────────────────────── */
+
+.marqueeSection {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(20px, 3vw, 34px) 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Gradient fade at both edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 7%,
+    #000 93%,
+    transparent 100%
+  );
+}
+
+/* Row 1 — scrolls left */
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 42s linear infinite;
+}
+
+/* Row 2 — scrolls right */
+.marqueeTrackReverse {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 48s linear infinite;
+}
+
+.marqueeWord {
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  padding: 0 clamp(16px, 2.5vw, 28px);
+  white-space: nowrap;
+}
+
+/* Row 2 words — slightly more muted for depth */
+.marqueeWordDim {
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text-tertiary);
+  opacity: 0.65;
+  padding: 0 clamp(16px, 2.5vw, 28px);
+  white-space: nowrap;
+}
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Reviews in action ───────────────────────────────────────────────────── */
+
+.reviewsSection {
+  padding: clamp(64px, 8vw, 108px) 0;
+}
+
+.reviewsLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0 0 clamp(24px, 4vw, 40px);
+}
+
+.reviewList {
+  border-top: 1px solid var(--border);
+}
+
+.reviewItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding: clamp(20px, 3vw, 32px) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.reviewMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.reviewTitle {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+
+.reviewSubline {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.reviewWord {
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text);
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Features ────────────────────────────────────────────────────────────── */
+
+.featuresSection {
+  padding: clamp(64px, 8vw, 108px) 0;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text);
+  margin: 0 0 clamp(32px, 5vw, 52px);
+  text-wrap: balance;
+}
+
+/* ── Manifesto ───────────────────────────────────────────────────────────── */
+
+.manifestoSection {
+  padding: clamp(64px, 8vw, 108px) 0;
+  border-top: 1px solid var(--border);
+}
+
+.manifestoText {
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--text-tertiary);
+  margin: 0;
+  max-width: 22ch;
+}
+
+.manifestoEmphasis {
+  color: var(--text);
+}
+
+.manifestoSub {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  margin: clamp(14px, 2vw, 20px) 0 0;
+}
+
+/* ── CTA ─────────────────────────────────────────────────────────────────── */
+
+.ctaSection {
+  padding: clamp(64px, 8vw, 108px) 0;
+}
+
+.ctaIcon {
+  border-radius: 12px;
+  display: block;
+  margin-bottom: clamp(20px, 3vw, 32px);
+}
+
+.ctaHeading {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--text);
+  margin: 0 0 14px;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.ctaSub {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  margin: 0 0 28px;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (min-width: 640px) {
+  /* Show phone frame at tablet and above */
+  .heroVisual {
+    display: flex;
+  }
+}
+
+@media (min-width: 960px) {
+  /* 2-column hero */
+  .hero {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 80px;
+  }
+
+  .heroVisual {
+    justify-content: flex-end;
+    align-self: center;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroCopy > *,
+  .heroVisual {
+    animation: none;
+    opacity: 1;
+  }
+
+  .marqueeTrack,
+  .marqueeTrackReverse {
+    animation-play-state: paused;
+  }
+}
