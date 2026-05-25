@@ -48,7 +48,7 @@ export const privacyPolicyDocument: LegalDocument = {
           bullets: [
             "Push notification token - a device-specific token that lets us send you notifications you have opted into. Stored in our database while your account is active.",
             "Error and crash data - if the app crashes, an anonymised report is sent to our error monitoring service (Sentry). It contains a one-way hash of your account ID (not reversible to your name or email), stack traces, and the app state at the time of the error. Your email, username, and review words are never included.",
-            "IP address (rate limiting only) - when you search, our servers apply a one-way cryptographic hash to your IP address to count requests per hour. Your raw IP address is not stored beyond that window.",
+            "IP address (rate limiting only) - when you search, our servers apply a one-way cryptographic hash to your IP address to count requests per hour. Your raw IP address is never stored.",
           ],
         },
         {
@@ -102,7 +102,7 @@ export const privacyPolicyDocument: LegalDocument = {
         "Google - Sign In with Google and Google Play payment processing.",
         "Sentry (sentry.io) - crash and error monitoring. User identifiers sent to Sentry are one-way hashed and cannot be reversed to identify you. No email or username is ever sent.",
         "Expo (expo.dev) - push notification delivery infrastructure.",
-        "OMDb - film and TV metadata (proxied via our servers; the provider sees our server IP, not yours).",
+        "TVmaze (tvmaze.com) - TV show metadata (proxied via our servers; the provider sees our server IP, not yours).",
         "MusicBrainz - music metadata (proxied via our servers).",
         "Open Library - book metadata (proxied via our servers).",
         "IGDB / Twitch - game metadata (proxied via our servers).",
@@ -131,7 +131,7 @@ export const privacyPolicyDocument: LegalDocument = {
         "Account data (profile, reviews, lists, likes, follows, favourites): retained while your account is active. Deleting your account permanently removes all associated data within 30 days.",
         "Support requests: retained for up to 2 years to help identify recurring issues.",
         "Error logs (Sentry): automatically purged after 90 days.",
-        "Rate-limit hashes: expire automatically after their rate-limit window (up to 1 hour) and are not retained beyond that.",
+        "Rate-limit hashes: not retained permanently; periodically purged from our database.",
         "Push notification tokens: deleted when you delete your account.",
       ],
     },
@@ -274,7 +274,7 @@ export const termsOfUseDocument: LegalDocument = {
     {
       title: "9. Third-party content",
       paragraphs: [
-        "Film, TV, music, book, and game information displayed in the app (titles, artwork, descriptions, genres) is sourced from third-party providers including OMDb, MusicBrainz, Open Library, and IGDB. This data is provided for informational purposes only. We make no warranties about its accuracy, completeness, or fitness for any particular purpose. Third-party providers' own terms and licences govern their data.",
+        "TV, music, book, and game information displayed in the app (titles, artwork, descriptions, genres) is sourced from third-party providers including TVmaze, MusicBrainz, Open Library, and IGDB. This data is provided for informational purposes only. We make no warranties about its accuracy, completeness, or fitness for any particular purpose. Third-party providers' own terms and licences govern their data.",
       ],
     },
     {
@@ -321,7 +321,7 @@ export const termsOfUseDocument: LegalDocument = {
       title: "16. Governing law and disputes",
       paragraphs: [
         "These Terms are governed by the laws of the Commonwealth of Australia, without regard to conflict of law principles.",
-        "If you have a dispute with us, please contact us first at support@getterse.app so we will try to resolve it.",
+        "If you have a dispute with us, please contact us first at support@getterse.app so we can try to resolve it.",
       ],
     },
     {
