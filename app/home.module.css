@@ -1,11 +1,12 @@
-/* ── Entrance animation ───────────────────────────────────────────────────── */
-
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Main ────────────────────────────────────────────────────────────────── */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 .main {
   flex: 1;
@@ -14,26 +15,6 @@
   overflow-x: clip;
 }
 
-/* ── Grain texture ────────────────────────────────────────────────────────── */
-
-.grain {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-}
-
-.grain svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* ── Shared inner container ──────────────────────────────────────────────── */
 
 .sectionInner {
   max-width: 1280px;
@@ -42,7 +23,6 @@
   width: 100%;
 }
 
-/* ── Hero ────────────────────────────────────────────────────────────────── */
 
 .hero {
   max-width: 1280px;
@@ -58,7 +38,6 @@
   align-items: center;
 }
 
-/* Staggered fade-up for hero copy children */
 .heroCopy {
   display: flex;
   flex-direction: column;
@@ -100,35 +79,20 @@
   margin: 0;
 }
 
-/* Phone frame */
 .heroVisual {
-  display: none; /* hidden on mobile — focus stays on CTA */
+  display: none;
   justify-content: center;
   opacity: 0;
   animation: fadeIn 700ms var(--ease-out) forwards;
   animation-delay: 180ms;
 }
 
-.phoneFrame {
-  position: relative;
-  width: clamp(200px, 26vw, 280px);
-  aspect-ratio: 9 / 19.5;
-  border-radius: 40px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: var(--surface-elevated);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.07),
-    0 60px 100px rgba(0, 0, 0, 0.65),
-    0 20px 40px rgba(0, 0, 0, 0.4);
-}
-
 .phoneImage {
-  object-fit: cover;
-  object-position: center top;
+  width: clamp(200px, 26vw, 280px);
+  height: auto;
+  display: block;
 }
 
-/* ── Marquee — two rows, opposite directions ─────────────────────────────── */
 
 .marqueeSection {
   border-top: 1px solid var(--border);
@@ -138,7 +102,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* Gradient fade at both edges */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -155,14 +118,12 @@
   );
 }
 
-/* Row 1 — scrolls left */
 .marqueeTrack {
   display: flex;
   width: max-content;
   animation: marqueeLeft 42s linear infinite;
 }
 
-/* Row 2 — scrolls right */
 .marqueeTrackReverse {
   display: flex;
   width: max-content;
@@ -179,7 +140,6 @@
   white-space: nowrap;
 }
 
-/* Row 2 words — slightly more muted for depth */
 .marqueeWordDim {
   font-size: clamp(1.1rem, 2vw, 1.45rem);
   font-weight: 600;
@@ -200,111 +160,59 @@
   to   { transform: translateX(0); }
 }
 
-/* ── Reviews in action ───────────────────────────────────────────────────── */
 
-.reviewsSection {
-  padding: clamp(64px, 8vw, 108px) 0;
-}
-
-.reviewsLabel {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin: 0 0 clamp(24px, 4vw, 40px);
-}
-
-.reviewList {
-  border-top: 1px solid var(--border);
-}
-
-.reviewItem {
+.showcaseSections {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
-  padding: clamp(20px, 3vw, 32px) 0;
-  border-bottom: 1px solid var(--border);
+  flex-direction: column;
 }
 
-.reviewMeta {
-  flex: 1;
-  min-width: 0;
-}
-
-.reviewTitle {
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin: 0 0 4px;
-}
-
-.reviewSubline {
-  font-size: 0.8rem;
-  color: var(--text-tertiary);
-  margin: 0;
-}
-
-.reviewWord {
-  font-size: clamp(2rem, 5vw, 4.2rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: var(--text);
-  margin: 0;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* ── Features ────────────────────────────────────────────────────────────── */
-
-.featuresSection {
+.showcaseRow {
+  border-top: 1px solid var(--border);
   padding: clamp(64px, 8vw, 108px) 0;
 }
 
-.sectionTitle {
-  font-size: clamp(2rem, 5vw, 3.4rem);
+.showcaseInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 5vw, 64px);
+  align-items: center;
+}
+
+.showcaseText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.showcaseHeading {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.05;
   color: var(--text);
-  margin: 0 0 clamp(32px, 5vw, 52px);
+  margin: 0;
   text-wrap: balance;
 }
 
-/* ── Manifesto ───────────────────────────────────────────────────────────── */
-
-.manifestoSection {
-  padding: clamp(64px, 8vw, 108px) 0;
-  border-top: 1px solid var(--border);
-}
-
-.manifestoText {
-  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
-  color: var(--text-tertiary);
+.showcaseBody {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.75;
+  color: var(--text-secondary);
   margin: 0;
-  max-width: 22ch;
+  max-width: 38ch;
 }
 
-.manifestoEmphasis {
-  color: var(--text);
+.showcaseVisual {
+  display: flex;
+  justify-content: center;
 }
-
-.manifestoSub {
-  font-size: 0.875rem;
-  color: var(--text-tertiary);
-  margin: clamp(14px, 2vw, 20px) 0 0;
-}
-
-/* ── CTA ─────────────────────────────────────────────────────────────────── */
 
 .ctaSection {
   padding: clamp(64px, 8vw, 108px) 0;
+  border-top: 1px solid var(--border);
 }
 
 .ctaIcon {
@@ -331,17 +239,28 @@
   margin: 0 0 28px;
 }
 
-/* ── Responsive ──────────────────────────────────────────────────────────── */
-
 @media (min-width: 640px) {
-  /* Show phone frame at tablet and above */
   .heroVisual {
     display: flex;
   }
 }
 
+@media (min-width: 720px) {
+  .showcaseInner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .showcaseRowFlipped .showcaseText {
+    order: 2;
+  }
+
+  .showcaseRowFlipped .showcaseVisual {
+    order: 1;
+  }
+
+}
+
 @media (min-width: 960px) {
-  /* 2-column hero */
   .hero {
     grid-template-columns: 1.15fr 0.85fr;
     gap: 80px;
@@ -351,9 +270,31 @@
     justify-content: flex-end;
     align-self: center;
   }
+
+  .showcaseVisual {
+    justify-content: flex-end;
+  }
+
+  .showcaseRowFlipped .showcaseVisual {
+    justify-content: flex-start;
+  }
 }
 
-/* ── Reduced motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .showcaseText {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 28%;
+    }
+
+    .showcaseVisual {
+      animation: revealUp linear both;
+      animation-timeline: view();
+      animation-range: entry 6% entry 34%;
+    }
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .heroCopy > *,

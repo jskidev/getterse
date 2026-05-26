@@ -9,15 +9,15 @@ export default function Footer() {
           © {new Date().getFullYear()} Terse
         </p>
         <div className={styles.links}>
+          <Link href="/support" className={styles.link}>
+            Support
+          </Link>
           <Link href="/privacy" className={styles.link}>
             Privacy
           </Link>
           <Link href="/terms" className={styles.link}>
             Terms
           </Link>
-          <a href="mailto:support@getterse.app" className={styles.link}>
-            support@getterse.app
-          </a>
         </div>
       </div>
     </footer>

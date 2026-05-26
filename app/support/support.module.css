@@ -17,7 +17,6 @@
   gap: 12px;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 0;
 }
 
 .backLink {
@@ -41,11 +40,6 @@
   font-weight: 700;
   letter-spacing: -0.04em;
   color: var(--text);
-}
-
-.meta {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
   margin: 0;
 }
 
@@ -62,6 +56,7 @@
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--text);
+  margin: 0;
 }
 
 .paragraph {
@@ -71,29 +66,25 @@
   margin: 0;
 }
 
-.group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.groupHeading {
-  font-size: 0.875rem;
-  font-weight: 600;
+.paragraph strong {
   color: var(--text);
-  margin: 0;
+  font-weight: 600;
 }
 
-.list {
-  margin: 0;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.listItem {
+.email {
+  display: inline-flex;
+  align-items: center;
   font-size: 0.95rem;
-  line-height: 1.75;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: border-color 160ms ease, color 160ms ease;
+  width: fit-content;
+}
+
+.email:hover {
   color: var(--text-secondary);
+  border-color: var(--text-tertiary);
 }

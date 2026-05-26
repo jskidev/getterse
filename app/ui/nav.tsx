@@ -30,25 +30,15 @@ export default function Nav() {
           />
           <span className={styles.wordmark}>Terse</span>
         </Link>
-        <div className={styles.navRight}>
-          <div className={styles.links}>
-            <Link href="/privacy" className={styles.link}>
-              Privacy
-            </Link>
-            <Link href="/terms" className={styles.link}>
-              Terms
-            </Link>
-          </div>
-          {downloadHref ? (
-            <a href={downloadHref} className={styles.navCta}>
-              Download
-            </a>
-          ) : (
-            <span className={`${styles.navCta} ${styles.navCtaDisabled}`}>
-              Download
-            </span>
-          )}
-        </div>
+        {downloadHref ? (
+          <a href={downloadHref} className={styles.navCta}>
+            Download
+          </a>
+        ) : (
+          <span className={`${styles.navCta} ${styles.navCtaDisabled}`}>
+            Download
+          </span>
+        )}
       </nav>
     </header>
   );

@@ -2,16 +2,11 @@ import Image from "next/image";
 import Nav from "./ui/nav";
 import Footer from "./ui/footer";
 import StoreButtons from "./ui/store-buttons";
-import FeatureReveal from "./ui/feature-reveal";
 import { absoluteUrl, createPageMetadata, siteConfig } from "./lib/siteMetadata";
 import styles from "./home.module.css";
 
 export const metadata = createPageMetadata({ path: "/" });
 
-// ── App screenshots ──────────────────────────────────────────────────────────
-const SCREENSHOT_MAIN = "/placeholder.jpg";
-
-// ── Marquee word sets (two rows, opposite directions) ─────────────────────────
 const MARQUEE_ROW_1 = [
   "perfect", "haunting", "timeless", "brilliant", "beautiful",
   "moving", "cinematic", "profound", "epic", "gorgeous", "transcendent",
@@ -22,47 +17,42 @@ const MARQUEE_ROW_2 = [
   "dated", "flawless", "forgettable", "breathtaking", "intense", "striking",
 ];
 
-// ── Category strip ────────────────────────────────────────────────────────────
-const CATEGORIES = ["Film", "TV", "Albums", "Tracks", "Books"];
 
-// ── Reviews in action ─────────────────────────────────────────────────────────
-const reviews = [
-  { title: "Oppenheimer", subline: "Film · 2023", word: "Necessary" },
-  { title: "The Bear", subline: "TV Series · 2022", word: "Relentless" },
-  { title: "Beyoncé - Renaissance", subline: "Album · 2022", word: "Defining" },
-  { title: "Normal People", subline: "Novel · 2018", word: "Devastating" },
-];
-
-// ── Features ─────────────────────────────────────────────────────────────────
-const features = [
+const showcase = [
   {
-    name: "One word",
-    description:
-      "No star ratings. No paragraph-long hot takes. Just the most honest distillation of what you think, chosen carefully, because it has to be.",
+    label: "One word",
+    heading: "Commit to what you actually think.",
+    body: "No stars, no paragraph. Just the word that captures it.",
+    image: "/phone-2.png",
+    alt: "Terse review screen",
+    flipped: false,
   },
   {
-    name: "Word clouds",
-    description:
-      "Every film, album, and book has a living word cloud built from everyone's reviews. See where opinions land, and where they fracture.",
+    label: "Feel the vibe",
+    heading: "Loved or loathed. You can tell.",
+    body: "Every review lands in the word cloud. The sentiment chart shows how the crowd actually feels about something.",
+    image: "/phone-1.png",
+    alt: "Terse word cloud",
+    flipped: true,
   },
   {
-    name: "Follow taste",
-    description:
-      "See what friends and people you admire think, without wading through essays. A one-word review tells you more than you'd expect.",
+    label: "Your profile",
+    heading: "Show what you're about.",
+    body: "Favourite reviews to pin them to your profile. Create and showcase your own curated lists.",
+    image: "/phone-4.png",
+    alt: "Terse profile with favourites and lists",
+    flipped: false,
   },
   {
-    name: "Every category",
-    description:
-      "Films, TV shows, albums, tracks, and books. Search, review, and discover across every category without switching apps.",
-  },
-  {
-    name: "Supporter",
-    description:
-      "A one-time purchase unlocks profile customisation and a personal stats dashboard. No subscription. Ever.",
+    label: "Search",
+    heading: "Search for anything.",
+    body: " Search for anything, write your review, done.",
+    image: "/phone-3.png",
+    alt: "Terse sentiment chart",
+    flipped: true,
   },
 ];
 
-// ── JSON-LD ───────────────────────────────────────────────────────────────────
 const homeJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -92,33 +82,15 @@ const homeJsonLd = {
       operatingSystem: "iOS, Android",
       url: siteConfig.url,
       image: absoluteUrl("/icon.png"),
-      featureList: features.map((f) => `${f.name}: ${f.description}`),
       publisher: { "@id": `${siteConfig.url}/#organization` },
     },
   ],
 };
 
-// ── Page ──────────────────────────────────────────────────────────────────────
 export default function Home() {
   return (
     <>
       <Nav />
-
-      {/* Grain texture — position: fixed, pointer-events: none */}
-      <div className={styles.grain} aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <filter id="grain">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.65"
-              numOctaves="3"
-              stitchTiles="stitch"
-            />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#grain)" />
-        </svg>
-      </div>
 
       <main className={styles.main}>
         <script
@@ -128,7 +100,6 @@ export default function Home() {
           }}
         />
 
-        {/* ── Hero ─────────────────────────────────────────────────────── */}
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
             <h1 className={styles.headline}>
@@ -137,30 +108,25 @@ export default function Home() {
               says everything.
             </h1>
             <p className={styles.lead}>
-              Terse strips away the noise. Review any film, album, book, TV
-              show, or game. But you only get one word. Make it count.
-            </p>
-            <p className={styles.categories}>
-              {CATEGORIES.join(" · ")}
+              Review any game, album, book, TV show, or song. You get one word. Make it count.
             </p>
             <StoreButtons priority />
           </div>
 
           <div className={styles.heroVisual}>
-            <div className={styles.phoneFrame}>
-              <Image
-                src={SCREENSHOT_MAIN}
-                alt="Terse app — one-word review interface"
-                fill
-                className={styles.phoneImage}
-                priority
-                sizes="(max-width: 639px) 0px, (max-width: 959px) 220px, 280px"
-              />
-            </div>
+            <Image
+              src="/phone-1.png"
+              alt="Terse app — one-word review interface"
+              width={390}
+              height={844}
+              className={styles.phoneImage}
+              priority
+              loading="eager"
+              unoptimized
+            />
           </div>
         </section>
 
-        {/* ── Marquee — two rows, opposite directions ───────────────────── */}
         <div className={styles.marqueeSection} aria-hidden="true">
           <div className={styles.marqueeTrack}>
             {[0, 1].flatMap((copy) =>
@@ -182,46 +148,32 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── Reviews in action ────────────────────────────────────────── */}
-        <section className={styles.reviewsSection}>
-          <div className={styles.sectionInner}>
-            <p className={styles.reviewsLabel}>One word, every time.</p>
-            <div className={styles.reviewList}>
-              {reviews.map(({ title, subline, word }) => (
-                <div key={title} className={styles.reviewItem}>
-                  <div className={styles.reviewMeta}>
-                    <p className={styles.reviewTitle}>{title}</p>
-                    <p className={styles.reviewSubline}>{subline}</p>
-                  </div>
-                  <p className={styles.reviewWord}>{word}</p>
+        <div className={styles.showcaseSections}>
+          {showcase.map(({ label, heading, body, image, alt, flipped }) => (
+            <section
+              key={label}
+              className={`${styles.showcaseRow} ${flipped ? styles.showcaseRowFlipped : ""}`}
+            >
+              <div className={styles.showcaseInner}>
+                <div className={styles.showcaseText}>
+                  <h2 className={styles.showcaseHeading}>{heading}</h2>
+                  <p className={styles.showcaseBody}>{body}</p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+                <div className={styles.showcaseVisual}>
+                  <Image
+                    src={image}
+                    alt={alt}
+                    width={390}
+                    height={844}
+                    className={styles.phoneImage}
+                    unoptimized
+                  />
+                </div>
+              </div>
+            </section>
+          ))}
+        </div>
 
-        {/* ── Features ─────────────────────────────────────────────────── */}
-        <section className={styles.featuresSection}>
-          <div className={styles.sectionInner}>
-            <h2 className={styles.sectionTitle}>Everything in one place.</h2>
-            <FeatureReveal features={features} />
-          </div>
-        </section>
-
-        {/* ── Manifesto ────────────────────────────────────────────────── */}
-        <section className={styles.manifestoSection}>
-          <div className={styles.sectionInner}>
-            <p className={styles.manifestoText}>
-              Opinions don&apos;t need paragraphs.{" "}
-              <span className={styles.manifestoEmphasis}>
-                One word cuts through everything.
-              </span>
-            </p>
-            <p className={styles.manifestoSub}>That&apos;s why Terse exists.</p>
-          </div>
-        </section>
-
-        {/* ── CTA ──────────────────────────────────────────────────────── */}
         <section className={styles.ctaSection}>
           <div className={styles.sectionInner}>
             <Image
@@ -232,7 +184,7 @@ export default function Home() {
               className={styles.ctaIcon}
             />
             <h2 className={styles.ctaHeading}>
-              Terse is for people with opinions who know how to keep them short.
+              One word. Make it count.
             </h2>
             <p className={styles.ctaSub}>Free to download. No subscription. Ever.</p>
             <StoreButtons />
