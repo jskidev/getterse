@@ -22,33 +22,33 @@ const showcase = [
   {
     label: "One word",
     heading: "Commit to what you actually think.",
-    body: "No stars, no paragraph. Just the word that captures it. Search for anything, write your review, done.",
-    image: "/placeholder.jpg",
+    body: "No stars, no paragraph. Just the word that captures it.",
+    image: "/phone-2.png",
     alt: "Terse review screen",
     flipped: false,
   },
   {
-    label: "The cloud",
-    heading: "See what everyone else said.",
-    body: "Every review lands in the word cloud. Bigger word, more people chose it. See where opinion converges and where it splits.",
-    image: "/placeholder.jpg",
+    label: "Feel the vibe",
+    heading: "Loved or loathed. You can tell.",
+    body: "Every review lands in the word cloud. The sentiment chart shows how the crowd actually feels about something.",
+    image: "/phone-1.png",
     alt: "Terse word cloud",
     flipped: true,
   },
   {
-    label: "Feel the vibe",
-    heading: "Loved or loathed. You can tell.",
-    body: "The sentiment chart shows how the crowd actually feels about something. Overwhelmingly positive, deeply divided. It's all there before you commit a word of your own.",
-    image: "/placeholder.jpg",
-    alt: "Terse sentiment chart",
+    label: "Your profile",
+    heading: "Show what you're about.",
+    body: "Favourite reviews to pin them to your profile. Create and showcase your own curated lists.",
+    image: "/phone-4.png",
+    alt: "Terse profile with favourites and lists",
     flipped: false,
   },
   {
-    label: "Your profile",
-    heading: "Show what you're about.",
-    body: "Heart a review to pin it as a favourite. Build lists of your picks. Your profile is a reflection of your taste, curated one word at a time.",
-    image: "/placeholder.jpg",
-    alt: "Terse profile with favourites and lists",
+    label: "Search",
+    heading: "Search for anything.",
+    body: " Search for anything, write your review, done.",
+    image: "/phone-3.png",
+    alt: "Terse sentiment chart",
     flipped: true,
   },
 ];
@@ -108,24 +108,22 @@ export default function Home() {
               says everything.
             </h1>
             <p className={styles.lead}>
-              Review any film, album, book, TV show, or game. You get one word.
-              Not a star rating. Not a paragraph. One word, chosen carefully,
-              because it has to be.
+              Review any game, album, book, TV show, or song. You get one word. Make it count.
             </p>
             <StoreButtons priority />
           </div>
 
           <div className={styles.heroVisual}>
-            <div className={styles.phoneFrame}>
-              <Image
-                src="/placeholder.jpg"
-                alt="Terse app — one-word review interface"
-                fill
-                className={styles.phoneImage}
-                priority
-                sizes="(max-width: 639px) 0px, (max-width: 959px) 220px, 280px"
-              />
-            </div>
+            <Image
+              src="/phone-1.png"
+              alt="Terse app — one-word review interface"
+              width={390}
+              height={844}
+              className={styles.phoneImage}
+              priority
+              loading="eager"
+              unoptimized
+            />
           </div>
         </section>
 
@@ -162,15 +160,14 @@ export default function Home() {
                   <p className={styles.showcaseBody}>{body}</p>
                 </div>
                 <div className={styles.showcaseVisual}>
-                  <div className={styles.phoneFrame}>
-                    <Image
-                      src={image}
-                      alt={alt}
-                      fill
-                      className={styles.phoneImage}
-                      sizes="(max-width: 719px) 260px, 280px"
-                    />
-                  </div>
+                  <Image
+                    src={image}
+                    alt={alt}
+                    width={390}
+                    height={844}
+                    className={styles.phoneImage}
+                    unoptimized
+                  />
                 </div>
               </div>
             </section>
@@ -187,7 +184,7 @@ export default function Home() {
               className={styles.ctaIcon}
             />
             <h2 className={styles.ctaHeading}>
-              For people with opinions who know how to keep them short.
+              One word. Make it count.
             </h2>
             <p className={styles.ctaSub}>Free to download. No subscription. Ever.</p>
             <StoreButtons />
