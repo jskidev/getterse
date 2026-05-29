@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <p className={styles.copyright}>
-          © {new Date().getFullYear()} Terse
+          © {new Date().getFullYear()} jskidev
         </p>
         <div className={styles.links}>
           <Link href="/support" className={styles.link}>
