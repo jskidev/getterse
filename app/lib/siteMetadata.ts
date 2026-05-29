@@ -12,11 +12,11 @@ export const siteConfig = {
   creator: "jskidev",
   url: "https://getterse.app",
   locale: "en_AU",
-  defaultTitle: "Terse — One-Word Reviews",
+  defaultTitle: "Terse: One-Word Reviews",
   description:
     "Terse is the one-word review app for films, albums, books, and TV shows. Review anything. One word. Make it count.",
   ogImage: "/icon.png",
-  ogImageAlt: "Terse — the one-word review app",
+  ogImageAlt: "Terse: the one-word review app",
   storeUrls: {
     ios: APP_STORE_URL,
     android: PLAY_STORE_URL,
